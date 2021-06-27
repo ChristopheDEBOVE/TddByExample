@@ -19,7 +19,7 @@ namespace TddByExample
         //todo dollar/franc duplication
         //done Common equals
         //todo Common times
-        //todo Compare Franc With Dollar
+        //todo Compare Franc With Dollar !!!
         
         
         [Fact]
@@ -48,6 +48,8 @@ namespace TddByExample
             
             new Franc(5).Should().Be(new Franc(5));
             new Franc(5).Should().NotBe(new Franc(6));
+            
+            new Franc(5).Should().NotBe(new Dollar(5));
         }
     }
 
