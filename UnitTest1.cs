@@ -57,8 +57,6 @@ namespace TddByExample
         
         public override bool Equals(object? obj)
             => (obj as Money).amount == amount;
-        
-        public override string ToString() => amount.ToString();
     }
 
     public class Dollar : Money
