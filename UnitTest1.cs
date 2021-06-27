@@ -8,6 +8,9 @@ namespace TddByExample
     {
         //todo $5 + 10 CHF = $10 if rate is 2:1
         //todo $5 * 2 = $10
+        //todo make amount private
+        //todo dollar side-effects?
+        //todo Money rounding?
         
         [Fact]
         public void testMultiplication()
