@@ -17,8 +17,9 @@ namespace TddByExample
         //todo equals object
         //done 5 CHF * 2 = 10 CHF
         //todo dollar/franc duplication
-        //todo Common equals
-        //todo Common times !!!
+        //done Common equals
+        //todo Common times
+        //todo Compare Franc With Dollar
         
         
         [Fact]
@@ -56,6 +57,8 @@ namespace TddByExample
         
         public override bool Equals(object? obj)
             => (obj as Money).amount == amount;
+        
+        public override string ToString() => amount.ToString();
     }
 
     public class Dollar : Money
@@ -69,26 +72,19 @@ namespace TddByExample
         {
             return new Dollar(amount*multiplier);
         }
-        public override string ToString() => amount.ToString();
     }
     
-    public class Franc
+    public class Franc : Money
     {
         public Franc(int amount)
         {
-            this._amount = amount;
+            this.amount = amount;
         }
-
-        private int _amount;
+        
 
         public Franc Times(int multiplier)
         {
-            return new Franc(_amount*multiplier);
+            return new Franc(amount*multiplier);
         }
-
-        public override bool Equals(object? obj)
-            => (obj as Franc)._amount == _amount;
-
-        public override string ToString() => _amount.ToString();
     }
 }
