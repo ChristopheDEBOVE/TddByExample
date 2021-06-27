@@ -87,29 +87,18 @@ namespace TddByExample
 
         public static Money Dollar(int amount)=>new Dollar(amount: amount,"$");
         public static Money Franc(int amount)=>new Franc(amount: amount,"CHF");
-
-        public virtual Money Times(int multiplier)
-        {
-            return null;
-        }
+        
+        public Money Times(int multiplier)=> new (amount*multiplier,currency);
 
     }
 
     public class Dollar : Money
     {
         public Dollar(int amount, string currency) : base(amount,currency){ }
-         
-        public override Money Times(int multiplier)=>Dollar(amount*multiplier);
-
     }
     
     public class Franc : Money
     {
         public Franc(int amount, string currency) : base(amount,currency){ }
-
-        public override Money Times(int multiplier)
-        {
-            return Franc(amount*multiplier);
-        }
     }
 }
