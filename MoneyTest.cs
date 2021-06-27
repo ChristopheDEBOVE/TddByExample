@@ -15,12 +15,13 @@ namespace TddByExample
         //todo equals null
         //todo equals object
         //done 5 CHF * 2 = 10 CHF
-        //todo dollar/franc duplication
+        //done dollar/franc duplication
         //done Common equals
-        //todo Common times !!!
+        //done Common times !!!
         //done Compare Franc With Dollar
         //done Compare Dollars to Francs currency? 
-        //todo Delete testFrancMultiplication
+        //done Delete testFrancMultiplication
+        //todo $5+ $5= $10
         
         [Fact]
         public void TestMultiplication()
@@ -44,6 +45,13 @@ namespace TddByExample
         {
             Money.Dollar(1).Currency().Should().Be("$");
             Money.Franc(1).Currency().Should().Be("CHF");
+        }
+
+        [Fact]
+        public void TestSimpleAddition()
+        {
+            Money sum = Money.Dollar(5).plus(Money.Dollar(5));
+            sum.Should().Be(Money.Dollar(10));
         }
     }
 }
