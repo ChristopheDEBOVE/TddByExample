@@ -8,10 +8,10 @@ namespace TddByExample
     {
         //todo $5 + 10 CHF = $10 if rate is 2:1
         //todo $5 * 2 = $10
-        //todo make amount private
+        //todo make amount private !!!
         //todo dollar side-effects?
         //todo Money rounding?
-        //todo equals !!!
+        //todo equals
         //todo getHashCode
         //todo equals null
         //todo equals object
@@ -20,11 +20,9 @@ namespace TddByExample
         public void testMultiplication()
         {
             Dollar five = new Dollar(5);
-            Dollar product = five.Times(2);
-            product.Amount.Should().Be(10);
             
-            product = five.Times(3);
-            product.Amount.Should().Be(15);
+            five.Times(2).Should().Be(new Dollar(10));
+            five.Times(3).Should().Be(new Dollar(15));
         }
 
         [Fact]
