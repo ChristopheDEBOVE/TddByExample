@@ -15,10 +15,10 @@ namespace TddByExample
         //todo getHashCode
         //todo equals null
         //todo equals object
-        //todo 5 CHF * 2 = 10 CHF !!!
+        //done 5 CHF * 2 = 10 CHF
         //todo dollar/franc duplication
         //todo Common equals
-        //todo Common times
+        //todo Common times !!!
         
         
         [Fact]
@@ -46,26 +46,27 @@ namespace TddByExample
             new Dollar(5).Should().NotBe(new Dollar(6));
         }
     }
-    
 
-    public class Dollar
+    public class Money
+    {
+        protected int amount;
+        
+        public override bool Equals(object? obj)
+            => (obj as Money).amount == amount;
+    }
+
+    public class Dollar : Money
     {
         public Dollar(int amount)
         {
-            this._amount = amount;
+            this.amount = amount;
         }
-
-        private int _amount;
 
         public Dollar Times(int multiplier)
         {
-            return new Dollar(_amount*multiplier);
+            return new Dollar(amount*multiplier);
         }
-
-        public override bool Equals(object? obj)
-            => (obj as Dollar)._amount == _amount;
-
-        public override string ToString() => _amount.ToString();
+        public override string ToString() => amount.ToString();
     }
     
     public class Franc
