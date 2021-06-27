@@ -1,10 +1,9 @@
-using System;
 using FluentAssertions;
 using Xunit;
 
 namespace TddByExample
 {
-    public class UnitTest1
+    public class MoneyTest
     {
         //todo $5 + 10 CHF = $10 if rate is 2:1
         //done $5 * 2 = $10
@@ -24,7 +23,7 @@ namespace TddByExample
         //todo Delete testFrancMultiplication
         
         [Fact]
-        public void testMultiplication()
+        public void TestMultiplication()
         {
             Money five = Money.Dollar(5);
             
@@ -33,7 +32,7 @@ namespace TddByExample
         } 
 
         [Fact]
-        public void testEquality()
+        public void TestEquality()
         {
             Money.Dollar(5).Should().Be(Money.Dollar(5));
             Money.Dollar(5).Should().NotBe(Money. Dollar(6));
@@ -41,35 +40,10 @@ namespace TddByExample
         } 
 
         [Fact]
-        public void testCurrency()
+        public void TestCurrency()
         {
             Money.Dollar(1).Currency().Should().Be("$");
             Money.Franc(1).Currency().Should().Be("CHF");
         }
     }
-
-    public class Money
-    {
-        protected int amount;
-        protected string currency;
-
-        public Money(int amount,string currency)
-        {
-            this.amount = amount;
-            this.currency = currency;
-        }
-        
-        public string Currency() => currency;
-
-        public override bool Equals(object? obj)
-            =>    (obj as Money).currency == currency
-               && (obj as Money).amount == amount;
-
-        public static Money Dollar(int amount)=> new Money(amount: amount,"$");
-        public static Money Franc(int amount)=> new Money(amount: amount,"CHF");
-        
-        public Money Times(int multiplier)=> new (amount*multiplier,currency);
-
-    }
-
 }
