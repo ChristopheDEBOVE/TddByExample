@@ -1,6 +1,6 @@
-using System.Linq.Expressions;
+using System;
 
-namespace TddByExample
+namespace TddByExample.Core
 {
     public class Money : Expression
     {
@@ -13,9 +13,23 @@ namespace TddByExample
             Currency = currency;
         }
 
-         
-        public override bool Equals(object? obj) =>    (obj as Money).Currency == Currency
-                                                       && (obj as Money).Amount == Amount;
+        protected bool Equals(Money other)
+        {
+            return Amount == other.Amount && Currency == other.Currency;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Money) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Amount, Currency);
+        }
 
         public Money Reduce(Bank source, string to)
         {

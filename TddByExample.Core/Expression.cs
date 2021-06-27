@@ -1,3 +1,5 @@
+using TddByExample.Core;
+
 namespace TddByExample
 {
     public interface Expression

@@ -1,4 +1,4 @@
-namespace TddByExample
+namespace TddByExample.Core
 {
     public class Sum : Expression
     {
