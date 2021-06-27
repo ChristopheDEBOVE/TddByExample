@@ -17,4 +17,20 @@ namespace TddByExample
             five.Amount.Should().Be(10);
         }
     }
+    
+
+    public class Dollar
+    {
+        public Dollar(int i)
+        {
+            
+        }
+
+        public int Amount { get; set; }
+
+        public void Times(int i)
+        {
+            
+        }
+    }
 }
