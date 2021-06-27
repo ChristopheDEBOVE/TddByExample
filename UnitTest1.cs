@@ -19,8 +19,8 @@ namespace TddByExample
         //todo dollar/franc duplication
         //done Common equals
         //todo Common times
-        //todo Compare Franc With Dollar !!!
-        
+        //done Compare Franc With Dollar
+        //todo Delete testFrancMultiplication
         
         [Fact]
         public void testMultiplication()
@@ -34,10 +34,10 @@ namespace TddByExample
         [Fact]
         public void testFrancMultiplication()
         {
-            Franc five = new Franc(5);
+            Money five = Money.Franc(5);
             
-            five.Times(2).Should().Be(new Franc(10));
-            five.Times(3).Should().Be(new Franc(15));
+            five.Times(2).Should().Be(Money.Franc(10));
+            five.Times(3).Should().Be(Money.Franc(15));
         }
 
         [Fact]
@@ -46,10 +46,10 @@ namespace TddByExample
             Money.Dollar(5).Should().Be(Money.Dollar(5));
             Money.Dollar(5).Should().NotBe(Money. Dollar(6));
             
-            new Franc(5).Should().Be(new Franc(5));
-            new Franc(5).Should().NotBe(new Franc(6));
+            Money.Franc(5).Should().Be(Money.Franc(5));
+            Money.Franc(5).Should().NotBe(Money.Franc(6));
             
-            new Franc(5).Should().NotBe(Money. Dollar(5));
+            Money.Franc(5).Should().NotBe(Money.Dollar(5));
         }
     }
 
@@ -62,6 +62,7 @@ namespace TddByExample
             => obj.GetType() == GetType() && (obj as Money).amount == amount;
 
         public static Money Dollar(int amount)=>new Dollar(amount: amount);
+        public static Money Franc(int amount)=>new Franc(amount: amount);
         public abstract Money Times(int multiplier);
 
     }
