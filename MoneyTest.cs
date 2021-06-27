@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using FluentAssertions;
 using Xunit;
 
@@ -43,15 +44,47 @@ namespace TddByExample
         [Fact]
         public void TestCurrency()
         {
-            Money.Dollar(1).Currency().Should().Be("$");
+            Money.Dollar(1).Currency().Should().Be("USD");
             Money.Franc(1).Currency().Should().Be("CHF");
         }
 
         [Fact]
         public void TestSimpleAddition()
         {
-            Money sum = Money.Dollar(5).plus(Money.Dollar(5));
-            sum.Should().Be(Money.Dollar(10));
+            var five = Money.Dollar(5);
+            Expression sum = five.plus(five);
+            Bank bank = new Bank();
+            Money reduced = bank.reduce(sum, "USD");
+            reduced.Should().Be(Money.Dollar(10));
+        }
+        
+        [Fact]
+        public void TestReduceSumAddition()
+        {
+            Expression sum = new Sum(Money.Dollar(3), Money.Dollar(4));
+            Bank bank = new Bank();
+            Money reduced = bank.reduce(sum, "USD");
+            reduced.Should().Be(Money.Dollar(7));
+        }
+        
+        [Fact]
+        public void TestPlusMustBeASum()
+        {
+            var five = Money.Dollar(5);
+            Expression result = five.plus(five);
+            Sum sum = (Sum) result;
+            sum.Augend.Should().Be(five);
+            sum.Addend.Should().Be(five);
+        }
+        
+        [Fact]
+        public void TestReduceMoneyDifferentCurrency()
+        {
+            Bank bank = new Bank();
+            bank.AddRate("CHF","USD",2);
+            bank.reduce(Money.Franc(2), "USD")
+                .Should().Be(Money.Dollar(1));
+
         }
     }
 }
