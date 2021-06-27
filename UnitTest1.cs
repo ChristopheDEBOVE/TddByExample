@@ -24,16 +24,16 @@ namespace TddByExample
 
     public class Dollar
     {
-        public Dollar(int i)
+        public Dollar(int amount)
         {
-            
+            this.Amount = amount;
         }
 
         public int Amount { get; set; } = 10;
 
-        public void Times(int i)
+        public void Times(int multiplier)
         {
-            
+            Amount *= multiplier;
         }
     }
 }
