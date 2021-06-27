@@ -16,11 +16,11 @@ namespace TddByExample
         public void testMultiplication()
         {
             Dollar five = new Dollar(5);
-            five.Times(2);
-            five.Amount.Should().Be(10);
+            Dollar product = five.Times(2);
+            product.Amount.Should().Be(10);
             
-            five.Times(3);
-            five.Amount.Should().Be(15);
+            product = five.Times(3);
+            product.Amount.Should().Be(15);
         }
     }
     
@@ -34,9 +34,10 @@ namespace TddByExample
 
         public int Amount { get; set; } = 10;
 
-        public void Times(int multiplier)
+        public Dollar Times(int multiplier)
         {
             Amount *= multiplier;
+            return null;
         }
     }
 }
