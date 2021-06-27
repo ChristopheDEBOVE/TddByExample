@@ -20,6 +20,7 @@ namespace TddByExample
         //done Common equals
         //todo Common times
         //done Compare Franc With Dollar
+        //todo Compare Dollars to Francs currency? !!!
         //todo Delete testFrancMultiplication
         
         [Fact]
