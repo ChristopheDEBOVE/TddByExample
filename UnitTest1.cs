@@ -58,7 +58,7 @@ namespace TddByExample
         protected int amount;
         
         public override bool Equals(object? obj)
-            => (obj as Money).amount == amount;
+            => obj.GetType() == GetType() && (obj as Money).amount == amount;
     }
 
     public class Dollar : Money
