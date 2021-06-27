@@ -38,19 +38,19 @@ namespace TddByExample
     {
         public Dollar(int amount)
         {
-            this.Amount = amount;
+            this._amount = amount;
         }
 
-        public int Amount { get; set; } = 10;
+        private int _amount;
 
         public Dollar Times(int multiplier)
         {
-            return new Dollar(Amount*multiplier);
+            return new Dollar(_amount*multiplier);
         }
 
         public override bool Equals(object? obj)
-            => (obj as Dollar).Amount == Amount;
+            => (obj as Dollar)._amount == _amount;
 
-        public override string ToString() => Amount.ToString();
+        public override string ToString() => _amount.ToString();
     }
 }
