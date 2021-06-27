@@ -43,13 +43,13 @@ namespace TddByExample
         [Fact]
         public void testEquality()
         {
-            new Dollar(5).Should().Be(new Dollar(5));
-            new Dollar(5).Should().NotBe(new Dollar(6));
+            Money.Dollar(5).Should().Be(Money.Dollar(5));
+            Money.Dollar(5).Should().NotBe(Money. Dollar(6));
             
             new Franc(5).Should().Be(new Franc(5));
             new Franc(5).Should().NotBe(new Franc(6));
             
-            new Franc(5).Should().NotBe(new Dollar(5));
+            new Franc(5).Should().NotBe(Money. Dollar(5));
         }
     }
 
