@@ -52,6 +52,13 @@ namespace TddByExample
             
             Money.Franc(5).Should().NotBe(Money.Dollar(5));
         }
+
+        [Fact]
+        public void testCurrency()
+        {
+            Money.Dollar(1).Currency.Should().Be("$");
+            Money.Franc(1).Currency.Should().Be("CHF");
+        }
     }
 
     public abstract class Money
