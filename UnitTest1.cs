@@ -13,6 +13,8 @@ namespace TddByExample
         //todo Money rounding?
         //todo equals !!!
         //todo getHashCode
+        //todo equals null
+        //todo equals object
         
         [Fact]
         public void testMultiplication()
@@ -29,6 +31,7 @@ namespace TddByExample
         public void testEquality()
         {
             new Dollar(5).Should().Be(new Dollar(5));
+            new Dollar(5).Should().NotBe(new Dollar(6));
         }
     }
     
@@ -48,8 +51,8 @@ namespace TddByExample
         }
 
         public override bool Equals(object? obj)
-        {
-            return true;
-        }
+            => (obj as Dollar).Amount == Amount;
+
+        public override string ToString() => Amount.ToString();
     }
 }
