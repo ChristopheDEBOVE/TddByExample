@@ -18,9 +18,9 @@ namespace TddByExample
         //done 5 CHF * 2 = 10 CHF
         //todo dollar/franc duplication
         //done Common equals
-        //todo Common times
+        //todo Common times !!!
         //done Compare Franc With Dollar
-        //todo Compare Dollars to Francs currency? !!!
+        //done Compare Dollars to Francs currency? 
         //todo Delete testFrancMultiplication
         
         [Fact]
@@ -56,49 +56,48 @@ namespace TddByExample
         [Fact]
         public void testCurrency()
         {
-            Money.Dollar(1).Currency.Should().Be("$");
-            Money.Franc(1).Currency.Should().Be("CHF");
+            Money.Dollar(1).Currency().Should().Be("$");
+            Money.Franc(1).Currency().Should().Be("CHF");
         }
     }
 
     public abstract class Money
     {
         protected int amount;
+        protected string currency;
+
+        public Money(int amount,string currency)
+        {
+            this.amount = amount;
+            this.currency = currency;
+        }
         
-        
+        public string Currency() => currency;
+
         public override bool Equals(object? obj)
             => obj.GetType() == GetType() && (obj as Money).amount == amount;
 
-        public static Money Dollar(int amount)=>new Dollar(amount: amount);
-        public static Money Franc(int amount)=>new Franc(amount: amount);
+        public static Money Dollar(int amount)=>new Dollar(amount: amount,"$");
+        public static Money Franc(int amount)=>new Franc(amount: amount,"CHF");
         public abstract Money Times(int multiplier);
 
     }
 
     public class Dollar : Money
     {
-        public Dollar(int amount)
-        {
-            this.amount = amount;
-        }
+        public Dollar(int amount, string currency) : base(amount,currency){ }
+         
+        public override Money Times(int multiplier)=>Dollar(amount*multiplier);
 
-        public override Money Times(int multiplier)
-        {
-            return new Dollar(amount*multiplier);
-        }
     }
     
     public class Franc : Money
     {
-        public Franc(int amount)
-        {
-            this.amount = amount;
-        }
-        
+        public Franc(int amount, string currency) : base(amount,currency){ }
 
         public override Money Times(int multiplier)
         {
-            return new Franc(amount*multiplier);
+            return Franc(amount*multiplier);
         }
     }
 }
