@@ -53,13 +53,17 @@ namespace TddByExample
         }
     }
 
-    public class Money
+    public abstract class Money
     {
         protected int amount;
         
         
         public override bool Equals(object? obj)
             => obj.GetType() == GetType() && (obj as Money).amount == amount;
+
+        public static Money Dollar(int amount)=>new Dollar(amount: amount);
+        public abstract Money Times(int multiplier);
+
     }
 
     public class Dollar : Money
@@ -69,7 +73,7 @@ namespace TddByExample
             this.amount = amount;
         }
 
-        public Money Times(int multiplier)
+        public override Money Times(int multiplier)
         {
             return new Dollar(amount*multiplier);
         }
@@ -83,7 +87,7 @@ namespace TddByExample
         }
         
 
-        public Money Times(int multiplier)
+        public override Money Times(int multiplier)
         {
             return new Franc(amount*multiplier);
         }
