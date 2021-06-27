@@ -31,7 +31,7 @@ namespace TddByExample
             
             Assert.Equal(Money.Dollar(10),
             Money.Dollar(5)
-                .plus(Money.Franc(10))
+                .Plus(Money.Franc(10))
                 .Reduce(bank,"USD"));
         } 
 
@@ -46,15 +46,15 @@ namespace TddByExample
         [Fact]
         public void TestCurrency()
         {
-            Money.Dollar(1).Currency().Should().Be("USD");
-            Money.Franc(1).Currency().Should().Be("CHF");
+            Money.Dollar(1).Currency.Should().Be("USD");
+            Money.Franc(1).Currency.Should().Be("CHF");
         }
 
         [Fact]
         public void TestSimpleAddition()
         {
             var five = Money.Dollar(5);
-            Expression sum = five.plus(five);
+            Expression sum = five.Plus(five);
             Bank bank = new Bank();
             Money reduced = bank.reduce(sum, "USD");
             reduced.Should().Be(Money.Dollar(10));
@@ -73,7 +73,7 @@ namespace TddByExample
         public void TestPlusMustBeASum()
         {
             var five = Money.Dollar(5);
-            Expression result = five.plus(five);
+            Expression result = five.Plus(five);
             Sum sum = (Sum) result;
             sum.Augend.Should().Be(five);
             sum.Addend.Should().Be(five);

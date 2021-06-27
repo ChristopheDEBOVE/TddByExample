@@ -2,18 +2,17 @@ namespace TddByExample
 {
     public class Sum : Expression
     {
-        public Money Augend { get; }
-        public Money Addend { get; }
+        public Expression Augend { get; }
+        public Expression Addend { get; }
 
-        public Sum(Money augend, Money addend)
+        public Sum(Expression augend, Expression addend)
         {
             Augend = augend;
             Addend = addend;
         }
 
         public Money Reduce(Bank source, string to)=>new (
-                        Addend.Reduce(source,to).Amount() 
-                             + Augend.Reduce(source,to).Amount()
-                            ,to);
+                        Addend.Reduce(source,to).Amount 
+                             + Augend.Reduce(source,to).Amount,to);
     }
 }
