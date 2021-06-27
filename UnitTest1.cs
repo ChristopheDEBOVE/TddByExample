@@ -25,10 +25,10 @@ namespace TddByExample
         [Fact]
         public void testMultiplication()
         {
-            Dollar five = new Dollar(5);
+            Money five = Money.Dollar(5);
             
-            five.Times(2).Should().Be(new Dollar(10));
-            five.Times(3).Should().Be(new Dollar(15));
+            five.Times(2).Should().Be(Money.Dollar(10));
+            five.Times(3).Should().Be(Money.Dollar(15));
         }
         
         [Fact]
@@ -56,6 +56,7 @@ namespace TddByExample
     public class Money
     {
         protected int amount;
+        
         
         public override bool Equals(object? obj)
             => obj.GetType() == GetType() && (obj as Money).amount == amount;
