@@ -11,9 +11,9 @@ namespace TddByExample
             Addend = addend;
         }
 
-        public Money Reduce(string to)
-        {
-            return new Money(Addend.Amount() + Augend.Amount(),to);
-        }
+        public Money Reduce(Bank source, string to)=>new (
+                        Addend.Reduce(source,to).Amount() 
+                             + Augend.Reduce(source,to).Amount()
+                            ,to);
     }
 }

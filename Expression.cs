@@ -2,6 +2,6 @@ namespace TddByExample
 {
     public interface Expression
     {
-        Money Reduce(string to);
+        Money Reduce(Bank source, string to);
     }
 }

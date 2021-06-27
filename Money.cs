@@ -18,12 +18,9 @@ namespace TddByExample
         public override bool Equals(object? obj) =>    (obj as Money)._currency == _currency
                                                        && (obj as Money)._amount == _amount;
 
-        public Money Reduce(string to)
+        public Money Reduce(Bank source, string to)
         {
-            int rate = to == "USD" && Currency() == "CHF"
-                ? 2
-                : 1;
-            return new Money(_amount / rate, to);
+            return new Money(_amount / source.Rate(_currency,to), to);
         }
 
         public static Money Dollar(int amount)=> new(amount: amount,"USD");
@@ -32,7 +29,9 @@ namespace TddByExample
 
         public Sum plus(Money addend)
         {
-            return new Sum(this,addend);
+            return new (this,addend);
         }
+
+        public override string ToString() => Amount() + " " + Currency();
     }
 }

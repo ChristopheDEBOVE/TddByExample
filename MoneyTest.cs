@@ -7,21 +7,10 @@ namespace TddByExample
     public class MoneyTest
     {
         //todo $5 + 10 CHF = $10 if rate is 2:1
-        //done $5 * 2 = $10
-        //done make amount private 
-        //done dollar side-effects?
         //todo Money rounding?
-        //done equals
         //todo getHashCode
         //todo equals null
-        //todo equals object
-        //done 5 CHF * 2 = 10 CHF
-        //done dollar/franc duplication
-        //done Common equals
-        //done Common times !!!
-        //done Compare Franc With Dollar
-        //done Compare Dollars to Francs currency? 
-        //done Delete testFrancMultiplication
+        //todo equals object 
         //todo $5+ $5= $10
         
         [Fact]
@@ -31,6 +20,19 @@ namespace TddByExample
             
             five.Times(2).Should().Be(Money.Dollar(10));
             five.Times(3).Should().Be(Money.Dollar(15));
+        } 
+        
+        [Fact]
+        public void TestMixedAddition()
+        {
+            //todo $5 + 10 CHF = $10 if rate is 2:1
+            Bank bank = new Bank();
+            bank.AddRate("CHF","USD",2);
+            
+            Assert.Equal(Money.Dollar(10),
+            Money.Dollar(5)
+                .plus(Money.Franc(10))
+                .Reduce(bank,"USD"));
         } 
 
         [Fact]
@@ -85,6 +87,12 @@ namespace TddByExample
             bank.reduce(Money.Franc(2), "USD")
                 .Should().Be(Money.Dollar(1));
 
+        }
+        
+        [Fact]
+        public void TestIdentityRate()
+        {
+            new Bank().Rate("USD","USD").Should().Be(1);
         }
     }
 }
