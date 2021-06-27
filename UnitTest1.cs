@@ -52,6 +52,13 @@ namespace TddByExample
             
             Money.Franc(5).Should().NotBe(Money.Dollar(5));
         }
+        
+        [Fact]
+        public void testDifferentClassEquality()
+        {
+            new Money(5,"CHF").Should().Be(new Franc(5,"CHF"));
+            
+        }
 
         [Fact]
         public void testCurrency()
@@ -61,7 +68,7 @@ namespace TddByExample
         }
     }
 
-    public abstract class Money
+    public class Money
     {
         protected int amount;
         protected string currency;
@@ -75,11 +82,16 @@ namespace TddByExample
         public string Currency() => currency;
 
         public override bool Equals(object? obj)
-            => obj.GetType() == GetType() && (obj as Money).amount == amount;
+            =>    (obj as Money).currency == currency
+               && (obj as Money).amount == amount;
 
         public static Money Dollar(int amount)=>new Dollar(amount: amount,"$");
         public static Money Franc(int amount)=>new Franc(amount: amount,"CHF");
-        public abstract Money Times(int multiplier);
+
+        public virtual Money Times(int multiplier)
+        {
+            return null;
+        }
 
     }
 
